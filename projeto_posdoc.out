@@ -1,0 +1,20 @@
+\BOOKMARK [1][-]{section.1}{Introdu\347\343o}{}% 1
+\BOOKMARK [1][-]{section.2}{Justificativa}{}% 2
+\BOOKMARK [1][-]{section.3}{Objetivos}{}% 3
+\BOOKMARK [1][-]{section.4}{Metodologia}{}% 4
+\BOOKMARK [2][-]{subsection.4.1}{Equa\347\343o da Onda em Meios Anisotr\363picos \(TTI\)}{section.4}% 5
+\BOOKMARK [3][-]{subsubsection.4.1.1}{Formula\347\343o Elasticidade TTI}{subsection.4.1}% 6
+\BOOKMARK [2][-]{subsection.4.2}{Ferramentas Computacionais}{section.4}% 7
+\BOOKMARK [3][-]{subsubsection.4.2.1}{Modelagem de fontes e receptores}{subsection.4.2}% 8
+\BOOKMARK [3][-]{subsubsection.4.2.2}{Gradiente adjunto automatizado}{subsection.4.2}% 9
+\BOOKMARK [3][-]{subsubsection.4.2.3}{Funcional Reduzido em Ensemble: Paralelismo de Fonte e Espacial}{subsection.4.2}% 10
+\BOOKMARK [3][-]{subsubsection.4.2.4}{Checkpointing}{subsection.4.2}% 11
+\BOOKMARK [2][-]{subsection.4.3}{An\341lise e verifica\347\343o de resultados}{section.4}% 12
+\BOOKMARK [3][-]{subsubsection.4.3.1}{An\341lise de Erro Num\351rico}{subsection.4.3}% 13
+\BOOKMARK [3][-]{subsubsection.4.3.2}{Verifica\347\343o de Gradientes via Teste de Taylor}{subsection.4.3}% 14
+\BOOKMARK [3][-]{subsubsection.4.3.3}{Verifica\347\343o em Modelos de Refer\352ncia}{subsection.4.3}% 15
+\BOOKMARK [1][-]{section.5}{Plano de Trabalho}{}% 16
+\BOOKMARK [2][-]{subsection.5.1}{Justificativa}{section.5}% 17
+\BOOKMARK [2][-]{subsection.5.2}{Cronograma de Execu\347\343o e Carga Hor\341ria}{section.5}% 18
+\BOOKMARK [2][-]{subsection.5.3}{Atividades de Dissemina\347\343o e Intera\347\343o}{section.5}% 19
+\BOOKMARK [1][-]{section.6}{Considera\347\365es Finais}{}% 20

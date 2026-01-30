@@ -1,0 +1,123 @@
+\begin{thebibliography}{10}
+
+\bibitem{AkiRichards2002}
+Keiiti Aki and Paul~G Richards.
+\newblock {\em Quantitative seismology}.
+\newblock University Science Books, Sausalito, California, second edition,
+  2002.
+
+\bibitem{AlkhalifahPlessix2014}
+Tariq Alkhalifah and R.-E. Plessix.
+\newblock A recipe for practical full-waveform inversion in anisotropic media:
+  An analytical parameter resolution study.
+\newblock {\em Geophysics}, 79(3):R91--R101, 2014.
+
+\bibitem{UFL:2014}
+Martin~S Aln{\ae}s, Anders Logg, Kristian~B {\O}lgaard, Marie~E Rognes, and
+  Garth~N Wells.
+\newblock {Unified Form Language}: A domain-specific language for weak
+  formulations of partial differential equations.
+\newblock {\em ACM Transactions on Mathematical Software (TOMS)}, 40(2):1--37,
+  2014.
+
+\bibitem{dolci2024}
+Daiane~I. Dolci, James~R. Maddison, David~A. Ham, Guillaume Pallez, and Julien
+  Herrmann.
+\newblock checkpoint\_schedules: schedules for incremental checkpointing of
+  adjoint simulations.
+\newblock {\em Journal of Open Source Software}, 9(95):6148, 2024.
+
+\bibitem{Kohn2012}
+Daniel K{\"o}hn, Dorian De~Nil, Andr{\'e} Kurzmann, Alicja Przebindowska, and
+  Thomas Bohlen.
+\newblock Influence of model parameterization for elastic full waveform
+  tomography.
+\newblock {\em Geophysical Journal International}, 191(1):325--345, 2012.
+
+\bibitem{Komatitsch1999}
+Dimitri Komatitsch and Jeroen Tromp.
+\newblock Introduction to the spectral element method for three-dimensional
+  seismic wave propagation.
+\newblock {\em Geophysical journal international}, 139(3):806--822, 1999.
+
+\bibitem{KomatitschVilotte1998}
+Dimitri Komatitsch and Jean-Pierre Vilotte.
+\newblock The spectral element method: an efficient tool for simulating the
+  seismic response of 2d and 3d geological structures.
+\newblock {\em Bulletin of the seismological society of America},
+  88(2):368--392, 1998.
+
+\bibitem{Luo2012}
+J~Luo, H~Zhu, T~Nissen-Meyer, C~Morency, and J~Tromp.
+\newblock Seismic modeling on irregular meshes using the spectral-element
+  method.
+\newblock {\em Geophysics}, 77(4):T301--T312, 2012.
+
+\bibitem{mitusch2018algorithmic}
+Sebastian~K. Mitusch.
+\newblock An algorithmic differentiation tool for {FEniCS}.
+\newblock Master's thesis, University of Oslo, 2018.
+
+\bibitem{Mitusch2019}
+Sebastian~K. Mitusch, Simon~W. Funke, and J{\o}rgen~S. Dokken.
+\newblock {dolfin-adjoint} 2018.1: automated adjoints for {FEniCS} and
+  {Firedrake}.
+\newblock {\em Journal of Open Source Software}, 4(38):1292, 2019.
+
+\bibitem{Modrak2016}
+Ryan~T Modrak and Jeroen Tromp.
+\newblock Seismic waveform inversion best practices: regional, global and
+  exploration test cases.
+\newblock {\em Geophysical Journal International}, 206(3):1864--1889, 2016.
+
+\bibitem{Nixon:2024}
+R.~W. Nixon-Hill, D.~Shapero, C.~J. Cotter, and D.~A. Ham.
+\newblock Consistent point data assimilation in firedrake and icepack.
+\newblock {\em Geoscientific Model Development}, 17(13):5369--5386, 2024.
+
+\bibitem{Operto2013}
+St{\'e}phane Operto, Y~Gholami, V~Prieux, A~Ribodetti, R~Brossier, L~Metivier,
+  and Jean Virieux.
+\newblock A guided tour of multiparameter full-waveform inversion with
+  multicomponent data: From theory to practice.
+\newblock {\em The Leading Edge}, 32(9):1040--1054, 2013.
+
+\bibitem{FiredrakeUserManual}
+Florian Rathgeber, David~A Ham, Lawrence Mitchell, Michael Lange, Fabio
+  Luporini, Andrew~TT McRae, Gheorghe-Teodor Bercea, Graham~R Markall, and
+  Paul~HJ Kelly.
+\newblock {Firedrake}: automating the finite element method by composing
+  abstractions.
+\newblock {\em ACM Transactions on Mathematical Software (TOMS)}, 43(3):1--27,
+  2016.
+
+\bibitem{roberts2022spyro}
+Keith~J. Roberts, Alexandre Olender, Lucas Franceschini, Robert~C. Kirby,
+  Rafael~S. Gioria, and Bruno~S. Carmo.
+\newblock {Spyro}: a {Firedrake}-based wave propagation and
+  full-waveform-inversion finite-element solver.
+\newblock {\em Geoscientific Model Development}, 15(23):8639--8667, 2022.
+
+\bibitem{Tarantola:1984}
+Albert Tarantola.
+\newblock Inversion of seismic reflection data in the acoustic approximation.
+\newblock {\em Geophysics}, 49(8):1259--1266, 1984.
+
+\bibitem{Thrastarson2020}
+Solvi Thrastarson, Dirk-Philip van Herwaarden, and Andreas Fichtner.
+\newblock Inversion-based resolution analysis in full waveform inversion.
+\newblock {\em Geophysical Journal International}, 221(3):1596--1616, 2020.
+
+\bibitem{Virieux2009}
+Jean Virieux and St{\'e}phane Operto.
+\newblock An overview of full-waveform inversion in exploration geophysics.
+\newblock {\em Geophysics}, 74(6):WCC1--WCC26, 2009.
+
+\bibitem{warner2013anisotropic}
+Michael Warner, Andrew Ratcliffe, Tenice Nangoo, Joanna Morgan, Adrian Umpleby,
+  Nikhil Shah, Vetle Vinje, Ivan {\v{S}}tekl, Llu{\'i}s Guasch, Caroline Win,
+  Graham Conroy, and Alexandre Bertrand.
+\newblock Anisotropic {3D} full-waveform inversion.
+\newblock {\em Geophysics}, 78(2):R59--R80, 2013.
+
+\end{thebibliography}
