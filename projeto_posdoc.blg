@@ -4,45 +4,45 @@ The top-level auxiliary file: projeto_posdoc.aux
 The style file: plain.bst
 Database file #1: referencias.bib
 Warning--I didn't find a database entry for "Plessix2014"
-You've used 20 entries,
+You've used 21 entries,
             2118 wiz_defined-function locations,
-            648 strings with 8189 characters,
-and the built_in function-call counts, 7538 in all, are:
-= -- 732
-> -- 431
+            658 strings with 8443 characters,
+and the built_in function-call counts, 7902 in all, are:
+= -- 769
+> -- 449
 < -- 0
-+ -- 175
-- -- 150
-* -- 638
-:= -- 1297
-add.period$ -- 60
-call.type$ -- 20
-change.case$ -- 135
++ -- 182
+- -- 156
+* -- 669
+:= -- 1358
+add.period$ -- 63
+call.type$ -- 21
+change.case$ -- 141
 chr.to.int$ -- 0
-cite$ -- 20
-duplicate$ -- 219
-empty$ -- 524
-format.name$ -- 150
-if$ -- 1488
+cite$ -- 21
+duplicate$ -- 230
+empty$ -- 551
+format.name$ -- 156
+if$ -- 1561
 int.to.chr$ -- 0
-int.to.str$ -- 20
-missing$ -- 21
-newline$ -- 103
-num.names$ -- 40
-pop$ -- 105
+int.to.str$ -- 21
+missing$ -- 22
+newline$ -- 108
+num.names$ -- 42
+pop$ -- 109
 preamble$ -- 1
-purify$ -- 115
+purify$ -- 120
 quote$ -- 0
-skip$ -- 142
+skip$ -- 149
 stack$ -- 0
-substring$ -- 540
-swap$ -- 19
+substring$ -- 570
+swap$ -- 20
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 76
+type$ -- 80
 warning$ -- 0
-while$ -- 72
-width$ -- 22
-write$ -- 223
+while$ -- 76
+width$ -- 23
+write$ -- 234
 (There was 1 warning)

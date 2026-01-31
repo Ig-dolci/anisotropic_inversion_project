@@ -113,6 +113,12 @@ Ilya Tsvankin.
   anisotropic media}.
 \newblock Society of Exploration Geophysicists, 3 edition, 2012.
 
+\bibitem{Virieux2011}
+Jean Virieux, Henri Calandra, and Ren{\'e}-Edouard Plessix.
+\newblock {A review of the spectral, pseudo-spectral, finite-difference and
+  finite-element modelling techniques for geophysical imaging}.
+\newblock {\em Geophysical Prospecting}, 59(5):794--813, 2011.
+
 \bibitem{Virieux2009}
 Jean Virieux and St{\'e}phane Operto.
 \newblock An overview of full-waveform inversion in exploration geophysics.

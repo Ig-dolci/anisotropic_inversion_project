@@ -121,7 +121,7 @@ revisões sobre o método.
 Um dos desafios centrais na aplicação da FWI a dados reais é a correta inversão de
 modelos anisotrópicos tridimensionais (3D) \cite{warner2013anisotropic}. A suposição simplificada de um meio acústico
 ou isotrópico em regiões em essencia anisotrópicas pode resultar em erros de imageamento \cite{AlkhalifahPlessix2014, AkiRichards2002}.
-De acordo com \cite{Thomsen1986} as causas de anisotropia em rochas, nesse caso superfícies rochosas, são  por exemplo quando há
+De acordo com \cite{Thomsen1986}, as causas de anisotropia em rochas, nesse caso superfícies rochosas, são  por exemplo quando há
 Fraturas presentes nas rochas, sequência de finas camadas isotrópicas ou anisotrópicas (isto é, estratificação
 fina em relação ao comprimento de onda sísmica), alinhamento preferencial de minerais, ou combinação desses fatores. Quando estruturas sedimentares
 estratificadas são deformadas por tectonismo regional ou por forças locais (por exemplo, a intrusão de corpos de sal),
@@ -139,7 +139,7 @@ Isso torna a inversão desafiadora, exigindo estratégias de parametrização ro
 Métodos baseados em Diferenças Finitas (FDM) são amplamente utilizados devido à sua eficiência computacional
 e facilidade de implementação. Entretanto, o FDM
 apresenta limitações na representação de geometrias complexas, dada a
-rigidez inerente às malhas estruturadas. Por outro lado, o Método de Elementos Finitos (FEM) oferece maior flexibilidade geométrica
+rigidez inerente às malhas estruturadas \cite{Virieux2011}. Por outro lado, o Método de Elementos Finitos (FEM) oferece maior flexibilidade geométrica
 em domínios topograficamente complexos \cite{Komatitsch1999}. Komatitsch e Vilotte \cite{KomatitschVilotte1998} demonstraram a
 aplicabilidade de elementos espectrais para a propagação de ondas em meios heterogêneos. Trabalhos
 como os de Modrak e Tromp \cite{Modrak2016} e Thrastarson et al. \cite{Thrastarson2020} exploraram o uso de FEM de alta ordem para FWI em escalas global e regional.
@@ -204,7 +204,7 @@ $t$ representa o tempo e $\mathbf{x}$ o vetor posição espacial. A notação $,
 $v_i$ é a $i$-ésima componente do campo de velocidade (unidade de comprimento por unidade de tempo) e $\sigma_{ij}$ é a componente $ij$ do tensor de tensão (força por unidade de superfície). $\rho$ é a densidade (massa por unidade de volume) e $C_{ijkl}$ são os componentes do tensor de elasticidade de quarta ordem (i.e. módulo elástico ou rigidez) introduzidos na lei de Hooke generalizada.
 Junto com a densidade, o módulo elástico descreve as propriedades mecânicas da subsuperfície. Note que o uso da lei de Hooke implica elasticidade linear, experimentalmente válida para pequenas deformações.
 
-Os componentes do tensor de elasticidade são positivos e exibem simetrias ($C_{jikl}=C_{ijkl}=C_{ijlk}=C_{jilk}$) (ver, por exemplo, Aki e Richards, 2002) e podem ser representados de forma mais compacta por uma matriz $6\times6$ usando a notação de Voigt, reagrupando o primeiro e segundo pares de índices conforme explicado na Tabela \ref{tab:voigt_mapping}. $f_i$ e $m_{ij}$ são os componentes de forças externas. $f_i$ é a $i$-ésima componente de uma fonte de força de corpo externa (força por unidade de volume). $m_{ij}$ são os componentes de uma fonte de densidade de momento externa (força por unidade de superfície, i.e. tensão).
+Os componentes do tensor de elasticidade são positivos e exibem simetrias ($C_{jikl}=C_{ijkl}=C_{ijlk}=C_{jilk}$) (ver, por exemplo, \cite{AkiRichards2002}) e podem ser representados de forma mais compacta por uma matriz $6\times6$ usando a notação de Voigt, reagrupando o primeiro e segundo pares de índices conforme explicado na Tabela \ref{tab:voigt_mapping}. $f_i$ e $m_{ij}$ são os componentes de forças externas. $f_i$ é a $i$-ésima componente de uma fonte de força de corpo externa (força por unidade de volume). $m_{ij}$ são os componentes de uma fonte de densidade de momento externa (força por unidade de superfície, i.e. tensão).
 Note que, matematicamente, uma fonte de densidade de momento pode ser substituída por uma força de corpo.
 
 \begin{table}[H]
@@ -339,8 +339,8 @@ os valores do funcional \(J_s\), e os gradientes
 \(\nabla_{\mathbf{m}}\widehat{J}_s(\mathbf{m})
 \) para \(s = 0, 1, 2\).  Para cada fonte \(s\), a malha é distribuída sobre dois processos, que se comunicam usando o comunicador espacial. Uma vez que os valores do funcional e gradientes são computados para todas as fontes, o \texttt{ensemble\_comm} reúne esses resultados e os soma para obter o valor total do funcional e gradiente, que são então utilizados no processo de otimização.  
 
-\begin{center}
-\begin{figure}[!ht]
+\begin{figure}[htbp]
+  \centering
   \begin{tikzpicture}
     [labelnode/.style={align=center},
     squarenode/.style={rectangle, draw=black, fill=blue!50, thick, minimum width=30mm, minimum height=7mm, align=center},
@@ -403,12 +403,12 @@ os valores do funcional \(J_s\), e os gradientes
         communicator \\
         Processes \(M = 2\)
     };
-    \fill[blue,rounded corners=2mm,even odd rule,opacity=0.25]  (2.4,-6.0) rectangle (5.65,-3.5);
-    \fill[blue,rounded corners=2mm,even odd rule,opacity=0.25]  (6.4,-6.0) rectangle (9.65,-3.5);
-    \fill[blue,rounded corners=2mm,even odd rule,opacity=0.25]  (10.4,-6.0) rectangle (13.65,-3.5);
-    \fill[red,rounded corners=2mm,even odd rule,opacity=0.25]  (2.4,-9.05) rectangle (5.65,-6.55);
-    \fill[red,rounded corners=2mm,even odd rule,opacity=0.25]  (6.4,-9.05) rectangle (9.65, -6.55);
-    \fill[red,rounded corners=2mm,even odd rule,opacity=0.25]  (10.4,-9.05) rectangle (13.65, -6.55);
+    \fill[blue,rounded corners=2mm,even odd rule,opacity=0.25]  (2.2,-6.0) rectangle (5.85,-3.5);
+    \fill[blue,rounded corners=2mm,even odd rule,opacity=0.25]  (6.2,-6.0) rectangle (9.85,-3.5);
+    \fill[blue,rounded corners=2mm,even odd rule,opacity=0.25]  (10.2,-6.0) rectangle (13.85,-3.5);
+    \fill[red,rounded corners=2mm,even odd rule,opacity=0.25]  (2.2,-8.5) rectangle (5.85,-6.4);
+    \fill[red,rounded corners=2mm,even odd rule,opacity=0.25]  (6.2,-8.5) rectangle (9.85, -6.4);
+    \fill[red,rounded corners=2mm,even odd rule,opacity=0.25]  (10.2,-8.5) rectangle (13.85, -6.4);
     % Arrows
     \draw[->, thick] (ensemblecomm) -- (4.,-0.9);
     \draw[->, thick] (ensemblecomm) -- (ensemble2);
@@ -420,7 +420,6 @@ os valores do funcional \(J_s\), e os gradientes
     \caption{Ilustração da comunicação em ensemble e paralelismo no cálculo do funcional reduzido para múltiplas fontes em um fluxo de trabalho de FWI.}
     \label{fig:ensemble_reduced_functional}
 \end{figure}
-\end{center}
 
 \subsubsection{Checkpointing}
 Cálculos de gradiente baseados no adjunto são altamente intensivos em
