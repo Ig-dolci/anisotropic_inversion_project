@@ -120,25 +120,30 @@ revisões sobre o método.
 
 Um dos desafios centrais na aplicação da FWI a dados reais é a correta inversão de
 modelos anisotrópicos tridimensionais (3D) \cite{warner2013anisotropic}. A suposição simplificada de um meio acústico
-ou isotrópico em regiões intrinsecamente anisotrópicas pode resultar em erros de imageamento \cite{AlkhalifahPlessix2014, AkiRichards2002}.
-Quando na subsuperfície as camadas sedimentares são deformadas por tectonismo regional ou por forças locais (por exemplo, corpos de sal), a
-rotação correspondente pode inclinar o meio TI (transversalmente isotrópico), formando um meio transversalmente isotrópico inclinado (TTI).
+ou isotrópico em regiões em essencia anisotrópicas pode resultar em erros de imageamento \cite{AlkhalifahPlessix2014, AkiRichards2002}.
+De acordo com \cite{Thomsen1986} as causas de anisotropia em rochas, nesse caso superfícies rochosas, são  por exemplo quando há
+Fraturas presentes nas rochas, sequência de finas camadas isotrópicas ou anisotrópicas (isto é, estratificação
+fina em relação ao comprimento de onda sísmica), alinhamento preferencial de minerais, ou combinação desses fatores. Quando estruturas sedimentares
+estratificadas são deformadas por tectonismo regional ou por forças locais (por exemplo, a intrusão de corpos de sal),
+o eixo de simetria do meio é rotacionado. Essa inclinação dá origem à chamada Isotropia
+Transversal Inclinada (TTI, do inglês \textit{Tilted Transverse Isotropy}), um modelo físico indispensável
+para descrever corretamente a propagação de ondas em flancos de domos salinos e bacias estruturalmente complexas \cite{Tsvankin2012}.
 
 A modelagem de meios TTI anisotrópicos transforma FWI em um
 problema de inversão de multiparametros, sujeito a fortes interdependências
 (\textit{trade-offs}) entre os parâmetros do modelo \cite{Kohn2012}.
 Esses \textit{trade-offs} ocorrem quando variações em diferentes
 parâmetros físicos produzem respostas sísmicas similares, gerando ambiguidades (ou \textit{crosstalk}) que dificultam a estimativa única de cada propriedade.
-Isso torna a inversão significativamente mais desafiadora, exigindo estratégias de parametrização robustas para mitigar tais ambiguidades.
+Isso torna a inversão desafiadora, exigindo estratégias de parametrização robustas para mitigar tais ambiguidades.
 
 Métodos baseados em Diferenças Finitas (FDM) são amplamente utilizados devido à sua eficiência computacional
-e facilidade de implementação em domínios simples. No entanto, o FDM
+e facilidade de implementação. Entretanto, o FDM
 apresenta limitações na representação de geometrias complexas, dada a
-rigidez inerente às malhas estruturadas \cite{Luo2012}. Por outro lado, o Método de Elementos Finitos (FEM) oferece maior flexibilidade geométrica
+rigidez inerente às malhas estruturadas. Por outro lado, o Método de Elementos Finitos (FEM) oferece maior flexibilidade geométrica
 em domínios topograficamente complexos \cite{Komatitsch1999}. Komatitsch e Vilotte \cite{KomatitschVilotte1998} demonstraram a
-aplicabilidade de elementos espectrais para a propagação de ondas em meios heterogêneos. Mais recentemente, trabalhos
+aplicabilidade de elementos espectrais para a propagação de ondas em meios heterogêneos. Trabalhos
 como os de Modrak e Tromp \cite{Modrak2016} e Thrastarson et al. \cite{Thrastarson2020} exploraram o uso de FEM de alta ordem para FWI em escalas global e regional.
-Complementarmente, Keith et al. \cite{roberts2022spyro} implementaram solucionadores de elementos finitos de alta ordem triangulares (2D) e
+Além disso, Keith et al. \cite{roberts2022spyro} implementaram solucionadores de elementos finitos de alta ordem triangulares (2D) e
 tetraédricos (3D) aplicados à FWI acústica. No entanto, a aplicação de solucionadores FEM 3D em escalas
 industriais impõe demandas severas de custo computacional e gerenciamento de memória.
 
@@ -146,19 +151,24 @@ Neste contexto, este projeto propõe o desenvolvimento de um \textit{framework}
 computacional em Python para FWI anisotrópico TTI, utilizando a biblioteca \textit{Firedrake} \cite{FiredrakeUserManual}.
 A abordagem adota a abstração matemática da \textit{Unified Form Language} (UFL) \cite{UFL:2014} para a definição simbólica das
 equações de onda na forma fraca, combinada com a geração automática de código otimizado. O diferencial da
-proposta reside na integração de Diferenciação Algorítmica (AD) via \texttt{pyadjoint} \cite{Mitusch2019} para o cálculo automatizado de gradientes,
-aliado a estratégias ótimas de \textit{checkpointing}, paralelismo de fontes de onda e inversão multiparamétrica.
+proposta está na integração de Diferenciação Algorítmica (AD) via \texttt{pyadjoint} \cite{Mitusch2019} para o cálculo automatizado de gradientes,
+aliado a estratégias ótimas de \textit{checkpointing}, funcional objetivo reduzido com paralelismo de fontes de onda e um \textit{framework} computacional
+flexível para estratégias robustas de inversão multiparamétrica.
 
 \section{Justificativa}
 
 O desenvolvimento de um solucionador baseado no Método de Elementos Finitos (FEM) de alta ordem, 
-dotado de diferenciação automática e gestão eficiente de memória, é estratégico para o avanço do FWI em meios complexos. 
-Embora ferramentas de FEM ofereçam precisão superior em malhas não estruturadas, a complexidade de implementação de códigos adjuntos (necessários para o cálculo de gradientes) muitas vezes limita a pesquisa de novas físicas, como a anisotropia TTI.
+com AD e gestão eficiente de memória, é estratégico para o avanço do FWI com sistemas de equações complexas, como a anisotropia TTI. 
+Embora ferramentas de FEM ofereçam precisão superior em malhas não estruturadas, a complexidade de implementação de códigos adjuntos (necessários para o cálculo de gradientes)
+pode limitar a pesquisa de novas físicas e estratégias de inversão, como às exigidas para inversão com anisotropia TTI.
 
-A utilização de AD \cite{mitusch2018algorithmic} para automatizar a obtenção das equações adjuntas elimina erros de derivação manual e acelera o desenvolvimento. Contudo, o uso de AD em problemas de grande porte (3D) apresenta desafios significativos de desempenho e consumo de memória. Investigar o equilíbrio entre a sobrecarga da AD e a eficiência computacional — comparando-a com abordagens manuais — é uma contribuição fundamental deste projeto.
+A utilização de AD para automatizar a obtenção das equações adjuntas elimina erros de derivação manual e acelera o desenvolvimento. Contudo, o uso de AD em problemas 
+com sistema de equações em grandes escalas (com em FWI 3D) apresenta desafios significativos de desempenho e consumo de memória. Investigar o
+equilíbrio entre a sobrecarga da AD e a eficiência computacional, comparando-a com abordagens manuais, é também um objetivo deste projeto.
 
 Além disso, a natureza multiparamétrica do FWI em meios TTI exige uma investigação rigorosa sobre os \textit{trade-offs} entre parâmetros. Um \textit{framework} flexível e extensível permitirá testar e integrar
-com AD as diferentes estratégias de parametrização e regularização para mitigar ambiguidades, algo difícil de realizar em códigos legados fechados. Portanto, a ferramenta proposta não apenas viabilizará simulações precisas, mas servirá como plataforma para o desenvolvimento metodológico em inversão sísmica.
+com AD as diferentes estratégias de parametrização e regularização para mitigar ambiguidades. Portanto, a ferramenta proposta
+tem como foco ser uma plataforma para desenvolvimentos metodológicos em inversão sísmica.
 
 % ============================================================
 
@@ -166,9 +176,9 @@ com AD as diferentes estratégias de parametrização e regularização para mit
 \section{Objetivos}
 
 O objetivo geral é implementar e verificar um \textit{framework} computacional para FWI TTI anisotrópico baseado em elementos finitos de alta ordem,
-integrando diferenciação algorítmica para o cálculo automatizado de gradientes e paralelismo \textit{ensemble} para o processamento eficiente de
+integrando AD para o cálculo automatizado de gradientes e paralelismo \textit{ensemble} para o processamento eficiente de
 múltiplas fontes. Adicionalmente, o projeto avaliará a inversão multiparamétrica, desde modelos sintéticos simples até modelos de referência
-industriais 3D, implementando uma arquitetura flexível com DA e estratégias para mitigar o \textit{trade-off} entre os parâmetros físicos.
+industriais 3D, implementando uma arquitetura flexível com AD e estratégias para mitigar o \textit{trade-off} entre os parâmetros físicos.
 
 % ============================================================
 

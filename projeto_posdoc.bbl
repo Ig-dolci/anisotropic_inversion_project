@@ -47,12 +47,6 @@ Dimitri Komatitsch and Jean-Pierre Vilotte.
 \newblock {\em Bulletin of the seismological society of America},
   88(2):368--392, 1998.
 
-\bibitem{Luo2012}
-J~Luo, H~Zhu, T~Nissen-Meyer, C~Morency, and J~Tromp.
-\newblock Seismic modeling on irregular meshes using the spectral-element
-  method.
-\newblock {\em Geophysics}, 77(4):T301--T312, 2012.
-
 \bibitem{mitusch2018algorithmic}
 Sebastian~K. Mitusch.
 \newblock An algorithmic differentiation tool for {FEniCS}.
@@ -103,10 +97,21 @@ Albert Tarantola.
 \newblock Inversion of seismic reflection data in the acoustic approximation.
 \newblock {\em Geophysics}, 49(8):1259--1266, 1984.
 
+\bibitem{Thomsen1986}
+Leon Thomsen.
+\newblock Weak elastic anisotropy.
+\newblock {\em Geophysics}, 51(10):1954--1966, 1986.
+
 \bibitem{Thrastarson2020}
 Solvi Thrastarson, Dirk-Philip van Herwaarden, and Andreas Fichtner.
 \newblock Inversion-based resolution analysis in full waveform inversion.
 \newblock {\em Geophysical Journal International}, 221(3):1596--1616, 2020.
+
+\bibitem{Tsvankin2012}
+Ilya Tsvankin.
+\newblock {\em Seismic signatures and analysis of reflection data in
+  anisotropic media}.
+\newblock Society of Exploration Geophysicists, 3 edition, 2012.
 
 \bibitem{Virieux2009}
 Jean Virieux and St{\'e}phane Operto.
