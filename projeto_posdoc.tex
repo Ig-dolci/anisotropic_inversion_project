@@ -112,17 +112,16 @@
 A Inversão de Forma de Onda Completa (FWI, do inglês \textit{Full Waveform Inversion}) é uma ferramenta
 de alta resolução no imageamento sísmico de subsuperfície, permitindo a
 predição de modelos de parâmetros acústicos e elásticos através da minimização da
-desajustes entre dados sísmicos observados e simulados \cite{Tarantola:1984, Virieux2009}.
+diferença entre dados sísmicos observados e simulados \cite{Tarantola:1984, Virieux2009}.
 FWI depende intrinsicamente da precisão física da modelagem de
 ondas e da eficiência dos métodos numéricos empregados. Para detalhes adicionais sobre FWI,
-o leitor pode consultar os trabalhos de \cite{Virieux2009, Operto2013, Plessix2014} que apresentam
+o leitor pode consultar os trabalhos de \cite{Virieux2009, Operto2013, AlkhalifahPlessix2014} que apresentam
 revisões sobre o método.
 
 Um dos desafios centrais na aplicação da FWI a dados reais é a correta inversão de
 modelos anisotrópicos tridimensionais (3D) \cite{warner2013anisotropic}. A suposição simplificada de um meio acústico
-ou isotrópico em regiões em essencia anisotrópicas pode resultar em erros de imageamento \cite{AlkhalifahPlessix2014, AkiRichards2002}.
-De acordo com \cite{Thomsen1986}, as causas de anisotropia em rochas, nesse caso superfícies rochosas, são  por exemplo quando há
-Fraturas presentes nas rochas, sequência de finas camadas isotrópicas ou anisotrópicas (isto é, estratificação
+ou isotrópico em regiões em essência elásticas e anisotrópicas pode resultar em erros de imageamento \cite{AlkhalifahPlessix2014, AkiRichards2002}.
+De acordo com \cite{Thomsen1986}, as causas de anisotropia em rochas, nesse caso superfícies rochosas, são  por exemplo quando há fraturas presentes nas rochas, sequência de finas camadas isotrópicas ou anisotrópicas (isto é, estratificação
 fina em relação ao comprimento de onda sísmica), alinhamento preferencial de minerais, ou combinação desses fatores. Quando estruturas sedimentares
 estratificadas são deformadas por tectonismo regional ou por forças locais (por exemplo, a intrusão de corpos de sal),
 o eixo de simetria do meio é rotacionado. Essa inclinação dá origem à chamada Isotropia
@@ -143,7 +142,7 @@ rigidez inerente às malhas estruturadas \cite{Virieux2011}. Por outro lado, o M
 em domínios topograficamente complexos \cite{Komatitsch1999}. Komatitsch e Vilotte \cite{KomatitschVilotte1998} demonstraram a
 aplicabilidade de elementos espectrais para a propagação de ondas em meios heterogêneos. Trabalhos
 como os de Modrak e Tromp \cite{Modrak2016} e Thrastarson et al. \cite{Thrastarson2020} exploraram o uso de FEM de alta ordem para FWI em escalas global e regional.
-Além disso, Keith et al. \cite{roberts2022spyro} implementaram solucionadores de elementos finitos de alta ordem triangulares (2D) e
+Além disso, Roberts et al. \cite{roberts2022spyro} implementaram solucionadores de elementos finitos de alta ordem triangulares (2D) e
 tetraédricos (3D) aplicados à FWI acústica. No entanto, a aplicação de solucionadores FEM 3D em escalas
 industriais impõe demandas severas de custo computacional e gerenciamento de memória.
 
@@ -158,12 +157,12 @@ flexível para estratégias robustas de inversão multiparamétrica.
 \section{Justificativa}
 
 O desenvolvimento de um solucionador baseado no Método de Elementos Finitos (FEM) de alta ordem, 
-com AD e gestão eficiente de memória, é estratégico para o avanço do FWI com sistemas de equações complexas, como a anisotropia TTI. 
+com AD e gestão eficiente de memória é estratégico para o avanço do FWI com sistemas de equações complexas, como a anisotropia TTI. 
 Embora ferramentas de FEM ofereçam precisão superior em malhas não estruturadas, a complexidade de implementação de códigos adjuntos (necessários para o cálculo de gradientes)
 pode limitar a pesquisa de novas físicas e estratégias de inversão, como às exigidas para inversão com anisotropia TTI.
 
 A utilização de AD para automatizar a obtenção das equações adjuntas elimina erros de derivação manual e acelera o desenvolvimento. Contudo, o uso de AD em problemas 
-com sistema de equações em grandes escalas (com em FWI 3D) apresenta desafios significativos de desempenho e consumo de memória. Investigar o
+com sistema de equações em grandes escalas (como em FWI 3D) apresenta desafios significativos de desempenho e consumo de memória. Investigar o
 equilíbrio entre a sobrecarga da AD e a eficiência computacional, comparando-a com abordagens manuais, é também um objetivo deste projeto.
 
 Além disso, a natureza multiparamétrica do FWI em meios TTI exige uma investigação rigorosa sobre os \textit{trade-offs} entre parâmetros. Um \textit{framework} flexível e extensível permitirá testar e integrar
@@ -175,7 +174,7 @@ tem como foco ser uma plataforma para desenvolvimentos metodológicos em invers�
 
 \section{Objetivos}
 
-O objetivo geral é implementar e verificar um \textit{framework} computacional para FWI TTI anisotrópico baseado em elementos finitos de alta ordem,
+O objetivo geral é implementar e verificar um \textit{framework} computacional para FWI 3D TTI baseado em elementos finitos de alta ordem,
 integrando AD para o cálculo automatizado de gradientes e paralelismo \textit{ensemble} para o processamento eficiente de
 múltiplas fontes. Adicionalmente, o projeto avaliará a inversão multiparamétrica, desde modelos sintéticos simples até modelos de referência
 industriais 3D, implementando uma arquitetura flexível com AD e estratégias para mitigar o \textit{trade-off} entre os parâmetros físicos.
@@ -264,7 +263,7 @@ sistema automatizado para resolução de equações diferenciais parciais (EDPs)
 Firedrake emprega a Unified Form Language (UFL) \cite{UFL:2014} para descrever problemas variacionais de forma
 simbólica de alto nível. Esta representação simbólica permite operações automáticas como diferenciação e cálculo de operadores adjuntos
 (transpostos hermitianos). Estas capacidades simbólicas, combinadas com a biblioteca de diferenciação algorítmica \texttt{pyadjoint} \cite{Mitusch2019},
-habilitam o Firedrake aos cálculos automatizados gradientes baseados no método adjunto sem necessidade de derivação manual das equações.
+habilitam o Firedrake aos cálculos automatizados de gradientes baseados no método adjunto sem necessidade de derivação manual das equações.
 
 A escolha desta plataforma justifica-se por diversos fatores: (i) flexibilidade na especificação de problemas variacionais através de notação matemática de alto nível; (ii) suporte nativo a malhas não estruturadas e elementos de ordem arbitrária; (iii) paralelismo automático via MPI; (iv) diferenciação algorítmica integrada; e (v) comunidade ativa e documentação extensiva. 
 
@@ -276,7 +275,6 @@ As fontes de onda podem ser expressas na forma fraca como:
 \end{equation}
 onde $r(N)$ denota a wavelet (por exemplo, a wavelet de Ricker) avaliada no tempo discreto $N$, e $w_s: V \to V^{\ast}$ é um funcional que mapeia do
 espaço de funções $V$ para seu espaço dual $V^{\ast}$.
-
 Em UFL, qualquer função em $V^{\ast}$ é referida como uma \texttt{Cofunction}. Portanto, referiremos $w_s$ como uma cofunção ao longo desta seção.
 
 A cofunção $w_s$ é não nula apenas em uma localização específica, $\mathbf{x}_s = \{x_s, z_s\}$ em 2D (ou $\mathbf{x}_s = \{x_s, y_s, z_s\}$ em 3D).
@@ -297,7 +295,7 @@ de Galerkin descontínuo de grau polinomial 0. Em seguida, computamos a cofunç�
 onde \(v_s\) é a função teste em \(V_s\), e \(\Omega_v \subset \Omega\) representa a malha somente de vértices.
 
 Após calcular \(s \in V_s^{\ast}\), interpolamos para o espaço dual \(V^{\ast}\). Esta interpolação é formulada como uma operação de elementos finitos, denotada pelo operador \(I_{V^{\ast}}: V_s^{\ast} \to V^{\ast}\).
-Para uma cofunção \(s \in V_s^{\ast}\), o operador de interpolação \(I_{V^{\ast}}\) mapeia \(s\) para \(w_s \in V^{\ast}\) como:
+Para uma cofunção \(s \in V_s^{\ast}\), o operador de interpolação \(I_{V^{\ast}}\) mapeia \(s\) para \(w_s \in V^{\ast}\) como
 \[
 I_{V^{\ast}}(; s) = w_s, \quad w_s \in V^{\ast}.
 \]
@@ -311,7 +309,7 @@ através de diferenciação algorítmica.
 \subsubsection{Gradiente adjunto automatizado}
 
 \texttt{spyro} implementa solucionadores de propagação de ondas diferenciáveis, isto é, solucionadores que utilizam
-exclusivamente a linguagem UFL para resolucionador as equações. Esta característica é essencial para obter
+exclusivamente a linguagem UFL para resolver as equações. Esta característica é essencial para obter
 cálculos de gradiente automatizados, uma vez que o processo de diferenciação automática realizado pelo módulo \texttt{firedrake.adjoint}
 utiliza a UFL \cite{UFL:2014} para diferenciação simbólica das operações dos solucionadores diretos. Além disso,
 o \texttt{firedrake.adjoint} integra a biblioteca \texttt{pyadjoint}
@@ -326,7 +324,7 @@ e de fontes sísmicas através de funcionais reduzidos em ensemble. Além disso,
 
 Para usar \texttt{EnsembleReducedFunctional}, um objeto \texttt{ensemble} deve primeiro ser instanciado.
 Este objeto requer um comunicador global (\texttt{COMM\_WORLD}) e especifica o número de processos usados para cada membro do ensemble. O trecho de código abaixo
-demons tra a configuração:
+demonstra a configuração:
 \begin{lstlisting}[language=Python]
 from firedrake import *
 ensemble = Ensemble(COMM_WORLD, M)
@@ -339,7 +337,7 @@ os valores do funcional \(J_s\), e os gradientes
 \(\nabla_{\mathbf{m}}\widehat{J}_s(\mathbf{m})
 \) para \(s = 0, 1, 2\).  Para cada fonte \(s\), a malha é distribuída sobre dois processos, que se comunicam usando o comunicador espacial. Uma vez que os valores do funcional e gradientes são computados para todas as fontes, o \texttt{ensemble\_comm} reúne esses resultados e os soma para obter o valor total do funcional e gradiente, que são então utilizados no processo de otimização.  
 
-\begin{figure}[htbp]
+\begin{figure}[t]
   \centering
   \begin{tikzpicture}
     [labelnode/.style={align=center},
@@ -422,11 +420,12 @@ os valores do funcional \(J_s\), e os gradientes
 \end{figure}
 
 \subsubsection{Checkpointing}
+
 Cálculos de gradiente baseados no adjunto são altamente intensivos em
 memória, especialmente para problemas de larga escala como FWI. Em EDPs
 dependentes do tempo, o gradiente adjunto tipicamente depende da solução
 direta e é computado em ordem temporal reversa. Isso requer primeiro
-resolucionador a EDP direta e armazenar as variáveis de estado diretas,
+resolver a EDP direta e armazenar as variáveis de estado diretas,
 levando a um requisito de memória proporcional ao número de passos de
 tempo, capaz de exceder a capacidade de um sistema computacional.
 
@@ -435,8 +434,8 @@ Uma estratégia para abordar esta questão
 é checkpointing, que envolve armazenar um número limitado de estados diretos intermediários. Estes
 checkpoints podem ser usados tanto para reiniciar a computação direta ou para a computação de gradientes baseados no
 adjunto. À medida que o cálculo adjunto avança em tempo reverso, a computação direta é progressivamente
-re-executada a partir do último estado armazenado disponível até o passo adjunto atual. Isso permite que menos estado direto
-seja armazenado, às custas de um maior custo computacional de tempo, já que passos diretos são executados mais de uma vez.
+re-executada a partir do último estado armazenado disponível até o passo adjunto atual. Isso permite que um número menor de estados diretos
+sejam armazenados, às custas de um maior custo computacional de tempo, já que passos diretos são executados mais de uma vez.
 
 A biblioteca de diferenciação algorítmica \texttt{pyadjoint} habilita checkpointing
 para cálculos de gradiente baseados no adjunto. Esta funcionalidade foi alcançada integrando o
@@ -456,37 +455,36 @@ A análise dos resultados será inicialmente conduzida através da quantificaç�
 Embora não haja solução analítica disponível para problemas complexos de FWI, utilizaremos dados de referência obtidos a partir de simulações de alta fidelidade
 (malhas refinadas e ordem de aproximação elevada) para avaliar a convergência da implementação numérica.
 
-O erro será quantificado utilizando a norma $L^2$ relativa, definida como:
+O erro será quantificado utilizando a norma $L^2$ relativa, definida como
 \begin{equation}
     \epsilon_{L^2} = \frac{\|u_h - u_{ref}\|_{L^2(\Omega)}}{\|u_{ref}\|_{L^2(\Omega)}} = \frac{\sqrt{\int_\Omega |u_h - u_{ref}|^2 \, d\Omega}}{\sqrt{\int_\Omega |u_{ref}|^2 \, d\Omega}}
-\end{equation}
+\end{equation},
 onde $u_h$ representa a solução numérica com tamanho de elemento $h$, $u_{ref}$ é a solução de referência de alta fidelidade, e $\Omega$ denota o domínio computacional.
 
-Para verificar a taxa de convergência espacial do método de elementos finitos, utilizaremos a relação:
+Para verificar a taxa de convergência espacial do método de elementos finitos, utilizaremos a relação
 \begin{equation}
-    \epsilon_{L^2}(h) = C h^p
+    \epsilon_{L^2}(h) = C h^p,
 \end{equation}
 onde $p$ é a ordem de convergência esperada (dependente do grau polinomial do elemento finito) e $C$ é uma constante. A taxa de convergência será estimada através do gráfico log-log:
 \begin{equation}
-    \log(\epsilon_{L^2}) = p \log(h) + \log(C)
+    \log(\epsilon_{L^2}) = p \log(h) + \log(C).
 \end{equation}
 
 \subsubsection{Verificação de Gradientes via Teste de Taylor}
 
-A corretude dos gradientes calculados via método adjunto será verificada utilizando o teste de Taylor. Para um funcional $J(\mathbf{m})$ (função objetivo da FWI) dependente do modelo $\mathbf{m}$, a expansão de Taylor até segunda ordem em torno de $\mathbf{m}_0$ é:
+A corretude dos gradientes calculados via método adjunto será verificada utilizando o teste de Taylor. Para um funcional $J(\mathbf{m})$ (função objetivo da FWI) dependente do modelo $\mathbf{m}$, a expansão de Taylor até segunda ordem em torno de $\mathbf{m}_0$ é
 \begin{equation}
-    J(\mathbf{m}_0 + \alpha \delta\mathbf{m}) = J(\mathbf{m}_0) + \alpha \nabla J(\mathbf{m}_0) \cdot \delta\mathbf{m} + \mathcal{O}(\alpha^2)
+    J(\mathbf{m}_0 + \alpha \delta\mathbf{m}) = J(\mathbf{m}_0) + \alpha \nabla J(\mathbf{m}_0) \cdot \delta\mathbf{m} + \mathcal{O}(\alpha^2),
 \end{equation}
 onde $\alpha$ é um escalar pequeno e $\delta\mathbf{m}$ é uma perturbação arbitrária.
 
-Definindo o resíduo de primeira ordem:
+Define-se o resíduo de primeira ordem:
 \begin{equation}
-    R_1(\alpha) = \left|J(\mathbf{m}_0 + \alpha \delta\mathbf{m}) - J(\mathbf{m}_0) - \alpha \nabla J(\mathbf{m}_0) \cdot \delta\mathbf{m}\right|
+    R_1(\alpha) = \left|J(\mathbf{m}_0 + \alpha \delta\mathbf{m}) - J(\mathbf{m}_0) - \alpha \nabla J(\mathbf{m}_0) \cdot \delta\mathbf{m}\right|.
 \end{equation}
-
-Se o gradiente adjunto estiver correto, devemos observar que $R_1(\alpha) = \mathcal{O}(\alpha^2)$, ou seja, o erro decai com taxa quadrática quando $\alpha \to 0$. Em escala logarítmica:
+Se o gradiente adjunto estiver correto, devemos observar que $R_1(\alpha) = \mathcal{O}(\alpha^2)$, ou seja, o erro decai com taxa quadrática quando $\alpha \to 0$. Em escala logarítmica,
 \begin{equation}
-    \log(R_1(\alpha)) \approx 2\log(\alpha) + \text{const}
+    \log(R_1(\alpha)) \approx 2\log(\alpha) + \text{const}.
 \end{equation}
 
 
@@ -495,19 +493,17 @@ Se o gradiente adjunto estiver correto, devemos observar que $R_1(\alpha) = \mat
 Na etapa final de verificação, serão realizadas simulações tridimensionais de FWI anisotrópico em modelos padrão da indústria de petróleo e gás (como os modelos EAGE Salt, Marmousi 3D, ou BP 2004 Benchmark), a fim de avaliar a capacidade do método em recuperar propriedades do meio subsuperficial a partir de dados sintéticos.
 
 A qualidade da inversão será quantificada através de métricas específicas:
-
 \begin{itemize}
-    \item \textbf{Redução do misfit}: Razão entre o valor inicial e final da função objetivo
+    \item \textbf{Redução do misfit}: Razão entre o valor inicial e final da função objetivo,
     \begin{equation}
-        R_{misfit} = \frac{J(\mathbf{m}_{final})}{J(\mathbf{m}_{inicial})}
+        R_{misfit} = \frac{J(\mathbf{m}_{final})}{J(\mathbf{m}_{inicial})}.
     \end{equation}
     
-    \item \textbf{Correlação entre modelos}: Coeficiente de correlação de Pearson
+    \item \textbf{Correlação entre modelos}: Coeficiente de correlação de Pearson,
     \begin{equation}
-        \rho = \frac{\text{cov}(\mathbf{m}_{true}, \mathbf{m}_{inv})}{\sigma_{\mathbf{m}_{true}} \sigma_{\mathbf{m}_{inv}}}
+        \rho = \frac{\text{cov}(\mathbf{m}_{true}, \mathbf{m}_{inv})}{\sigma_{\mathbf{m}_{true}} \sigma_{\mathbf{m}_{inv}}}.
     \end{equation}
 \end{itemize}
-
 Estas métricas permitirão avaliar quantitativamente a eficácia da implementação e sua adequação para aplicações em dados reais.
 
 
